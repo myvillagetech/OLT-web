@@ -1,0 +1,36 @@
+<!-- Booking summary --> 
+  <h3 class="pb-3">Booking Summary</h3>
+  <!-- Mentee List Tab -->
+  <div class="tab-pane show active" id="mentee-list">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-center mb-0">
+            <thead>
+              <tr>
+                <th>Mentee Lists</th>
+                <th>Scheduled Date</th>
+                <th class="text-center">Scheduled Timings</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of appointments">
+                <td>
+                  <h2 class="table-avatar">
+                    <a [routerLink]="'/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{appointment.mentees.img}}" alt="User Image"></a>
+                    <a [routerLink]="'/mentor-profile'">{{appointment.mentees.name}}<span>{{appointment.mentees.email}}</span></a>				
+                  </h2>
+                </td>
+                <td>{{appointment.appointment_time | date : 'dd MMM yyyy'}}</td>
+                <td class="text-center"><span class="pending">9:00 AM - 10:00 AM</span></td>
+                <td class="text-center"><a [routerLink]="'/mentor-profile'" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View</a></td>
+              </tr>                   
+            </tbody>
+          </table>		
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Mentee List Tab --> 
+<!-- /Booking summary -->
