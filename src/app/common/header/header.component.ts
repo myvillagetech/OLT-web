@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   splitVal:any;
   base = '';
   page = '';
+  authToken = localStorage.getItem('accessToken');
   constructor(
     private cdr: ChangeDetectorRef,
     public router: Router,
@@ -76,6 +77,8 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  
 
   ngAfterViewInit() {
     this.cdr.detectChanges();

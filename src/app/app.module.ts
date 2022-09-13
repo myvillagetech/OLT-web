@@ -7,7 +7,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,6 +16,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { OltHomePageComponent } from './OLT/olt-home-page/olt-home-page.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -25,7 +26,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     HttpClientModule,
     SlickCarouselModule,
     ToastrModule.forRoot(),
-    HttpClientInMemoryWebApiModule.forRoot(DataService),
+    // HttpClientInMemoryWebApiModule.forRoot(DataService),
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,

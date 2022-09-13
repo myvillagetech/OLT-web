@@ -2,7 +2,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'index', pathMatch: 'full' },
+  { path: '', redirectTo: 'olt/home', pathMatch: 'full' },
+  {
+    path: 'olt/home',
+    loadChildren : () => import('./OLT/olt-home-page/olt-home-page.module').then((m)=> m.OltHomePageModule),
+  },
+  {
+    path: 'olt/main',
+    loadChildren : () => import('./OLT/olt-main-page/olt-main-page.module').then((m)=> m.OltMainPageModule),
+  },
+  {
+    path: 'tutor/main',
+    loadChildren : () => import('./OLT/tutor-main-page/tutor-main-page.module').then((m)=> m.TutorMainPageModule),
+  },
+  {
+    path: 'tutor/profile',
+    loadChildren : () => import('./OLT/tutor-profile/tutor-profile.module').then((m)=> m.TutorProfileModule),
+  },
   {
     path: 'index',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
