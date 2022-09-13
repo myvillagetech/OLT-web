@@ -1,0 +1,79 @@
+<div>
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="tutorProfile" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label">First Name</label>
+                                <input name="firstName" type="text" placeholder="First Name"
+                                    formControlName="firstName">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label">Last Name</label>
+                                <input name="lastName" type="text" placeholder="Last Name" formControlName="lastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="form-control-label">Email</label>
+                            <input name="email" type="email" placeholder="Email" formControlName="email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="form-control-label">Title</label>
+                            <input name="title" type="text" placeholder="title" formControlName="title">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="form-control-label">Discription</label>
+                            <textarea name="discription" type="text" placeholder="Discription"
+                                formControlName="discription"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="form-control-label">Subject</label>
+                            <input name="subject" type="text" placeholder="Subject" formControlName="subject">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">Hourly Rate</label>
+                        <input name="hourlyRate" type="number" placeholder="Hourly Rate" formControlName="hourlyRate">
+                    </div>
+                    <div formArrayName="slots">
+                        <button (click)="addNewSlot()" type="button">Add new Slot +</button>
+                        <div *ngFor="let control of availableSlotsFormArray?.controls ; let index=index ">
+                            <div [formGroupName]="index" class="row m-2">
+                                <div class="col-lg-3">
+                                    <label class="form-control-label">Day</label>
+                                    <input name="day" type="date" formControlName="day">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label class="form-control-label">From</label>
+                                    <input type="time" name="from" formControlName="from">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label class="form-control-label">To</label>
+                                    <input type="time" name="to" formControlName="to">
+                                </div>
+                                <div class="col-lg-3">
+                                    <button (click)="deleteSlot(index)" type="button">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
