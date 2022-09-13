@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -14,33 +15,32 @@ export class RegisterComponent implements OnInit {
   fname = '';
   lname = '';
   email = '';
+  phoneNumber = '';
   password = '';
   confirm = '';
-  isPatient: boolean = true;
-  mentors: any = [];
-  mentees: any = [];
-  reg_type = 'Mentee Register';
-  doc_patient = 'Are you a Mentor?';
+  isTutor: boolean = true;
+  reg_type = 'Student Register';
+  doc_patient = 'Are you a Tutor?';
   constructor(
     private toastr: ToastrService,
     public commonService: CommonServiceService,
-    public router: Router
+    public router: Router,
+    public registerService : RegisterService
   ) {}
 
   ngOnInit(): void {
-    this.getpatients();
-    this.getMentors();
+
   }
 
   changeRegType() {
-    if (this.reg_type === 'Mentor Register') {
-      this.reg_type = 'Mentee Register';
-      this.doc_patient = 'Are you a Mentor?';
-      this.isPatient = true;
+    if (this.reg_type === 'Tutor Register') {
+      this.reg_type = 'Student Register';
+      this.doc_patient = 'Are you a Tutor?';
+      this.isTutor = true;
     } else {
-      this.reg_type = 'Mentor Register';
-      this.doc_patient = 'Not a Mentor?';
-      this.isPatient = false;
+      this.reg_type = 'Tutor Register';
+      this.doc_patient = 'Not a Tutor?';
+      this.isTutor = false;
     }
   }
 
@@ -49,45 +49,57 @@ export class RegisterComponent implements OnInit {
       this.fname === '' ||
       this.email === '' ||
       this.password === '' ||
-      this.confirm === ''
+      this.confirm === '' || 
+      this.phoneNumber === ''
     ) {
       this.toastr.error('', 'Please enter mandatory field!');
-    } else {
-      if (!this.isPatient) {
-        let params = {
-          id: this.mentors.length + 1,
-          doctor_name: this.fname + ' ' + this.lname,
-          password: this.password,
-          email: this.email,
-        };
-        this.commonService.createDoctor(params).subscribe((res) => {
-          this.toastr.success('', 'Register successfully!');
-          this.router.navigate(['/login-page']);
-        });
+    }
+     else {
+      if (!this.isTutor) {
+       const payload = {
+        "userId" : 1,
+        "firstName" : this.fname,
+        "lastName" : this.lname,
+        "email" : this.email,
+        "phone" : `${this.phoneNumber}`,
+        "password" : this.password,
+        "dob" : "12-12-1978",
+        "active" : 'true',
+        "roles" : ["Tutor"]
+       }
+       this.registerService.register(payload).subscribe(
+        (res)=>{
+          this.toastr.success("Registeration Successfull");
+          console.log(res);
+        },
+        (error)=>{
+          console.log(error);
+        }
+       )
       } else {
-        let params = {
-          id: this.mentors.length + 1,
-          doctor_name: this.fname + ' ' + this.lname,
-          password: this.password,
-          email: this.email,
-        };
-        this.commonService.createPatient(params).subscribe((res) => {
-          this.toastr.success('', 'Register successfully!');
-          this.router.navigate(['/login-page']);
-        });
+        const payload = {
+          "userId" : 1,
+          "firstName" : this.fname,
+          "lastName" : this.lname,
+          "email" : this.email,
+          "phone" : `${this.phoneNumber}`,
+          "password" : this.password,
+          "dob" : "12-12-1978",
+          "active" : 'true',
+          "roles" : ["Student"]
+         }
+         this.registerService.register(payload).subscribe(
+          (res)=>{
+            this.toastr.success("Registeration Successfull");
+            this.router.navigate(['/login-page']);
+          },
+          (error)=>{
+            this.toastr.error(`${error.message}`);
+          }
+         )
       }
     }
   }
 
-  getMentors() {
-    this.commonService.getMentors().subscribe((res) => {
-      this.mentors = res;
-    });
-  }
 
-  getpatients() {
-    this.commonService.getpatients().subscribe((res) => {
-      this.mentees = res;
-    });
-  }
 }
