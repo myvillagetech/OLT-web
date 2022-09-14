@@ -1,0 +1,56 @@
+<div>
+    <h4>Courses</h4>
+</div>
+
+
+<div>
+    <p-dropdown [options]="courses" optionLabel="name" [filter]="true" filterBy="courseName"
+        [(ngModel)]="selectedCourse" [showClear]="true" placeholder="Select a course" optionLabel="courseName"
+        (onChange)="dropdownChange($event)"></p-dropdown>
+</div>
+<div class="m-4">
+    <h4>Active Courses</h4>
+</div>
+<div>
+    <div *ngIf="!selectedCourse">
+        <h5 class="d-flex justify-content-center">Please Select Course</h5>
+    </div>
+    <div *ngIf="availableTutorProfiles.length === 0 && selectedCourse">
+        <h5 class="d-flex justify-content-center">No Tutor Available! Please check with other Courses</h5>
+    </div>
+    <div *ngIf="availableTutorProfiles.length !== 0">
+        <div *ngFor="let tutor of availableTutorProfiles; let index = index">
+            <div class="card m-1">
+                <div class="card-body">
+                    <div class="mentor-widget">
+                        <div class="user-info-left">
+                            <div class="user-info-cont">
+                                <h4 class="usr-name"><a>{{tutor?.firstName}}{{tutor?.lastName}}</a></h4>
+                                <p class="mentor-type">{{tutor?.title}}</p>
+                                
+                                <div class="mentor-details">
+                                    <p class="user-location">{{tutor?.discription}}</p>
+                                </div>
+                                <p>Hourly Charge : {{tutor?.hourlyRate}}</p>
+                            </div>
+                        </div>
+                        <div class="user-info-right">
+                            <p>Available Slots</p>
+                            <div class="user-infos" >
+                                <ul >
+                                    <li *ngFor="let slot of tutor.slots; let i = index">
+                                        <p-checkbox name="slots" [value]="slot" [(ngModel)]="selectedSlots"></p-checkbox>
+                                        {{slot?.day}} - {{slot?.from}} to {{slot?.to}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mentor-booking">
+                                <a class="apt-btn" (click)="bookAppointment(tutor)">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

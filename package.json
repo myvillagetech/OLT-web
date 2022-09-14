@@ -59,6 +59,8 @@
     "ngx-tags-input": "^2.0.1",
     "ngx-toastr": "^14.3.0",
     "npm-force-resolutions": "^0.0.10",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.4.1",
     "raphael": "^2.3.0",
     "rxjs": "~7.5.0",
     "select2": "^4.1.0-rc.0",

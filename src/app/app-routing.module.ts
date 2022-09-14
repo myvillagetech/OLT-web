@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { StudentMainPageModule } from './OLT/student-main-page/student-main-page.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'olt/home', pathMatch: 'full' },
@@ -18,6 +19,26 @@ const routes: Routes = [
   {
     path: 'tutor/profile',
     loadChildren : () => import('./OLT/tutor-profile/tutor-profile.module').then((m)=> m.TutorProfileModule),
+  },
+  {
+    path: 'tutor/course',
+    loadChildren : () => import('./OLT/tutor-course/tutor-course.module').then((m)=> m.TutorCourseModule),
+  },
+  {
+    path : 'student/main',
+    loadChildren : () => import('./OLT/student-main-page/student-main-page.module').then((m) => m.StudentMainPageModule)
+  },
+  {
+    path : 'student/course',
+    loadChildren : () => import('./OLT/student-course/student-course.module').then((m)=>m.StudentCourseModule)
+  },
+  {
+    path : 'tutor/schedules',
+    loadChildren : () => import('./OLT/tutor-schedules/tutor-schedules.module').then((m)=>m.TutorSchedulesModule)
+  },
+  {
+    path : 'student/schedules',
+    loadChildren : () => import('./OLT/student-schedules/student-schedules.module').then((m)=>m.StudentSchedulesModule)
   },
   {
     path: 'index',

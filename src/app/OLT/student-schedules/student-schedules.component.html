@@ -1,0 +1,39 @@
+<div>
+    <h3>Schedules</h3>
+</div>
+
+<div>
+    <div *ngFor="let schedule of schedules; let index = index ">
+        <div class="card m-1">
+            <div class="card-body">
+                <div class="mentor-widget">
+                    <div class="user-info-left">
+                        <div class="user-info-cont">
+                            <div *ngFor="let subject of schedule.subjects; let i = index">
+                                <p class="usr-name">Course : {{subject?.courseName}}</p>
+                                <p class="mentor-type"> Course Discription : {{subject?.courseDiscription}}</p>
+                                <h4 class="mentor-type"><a>Tutor Id :{{schedule.tutorId}}</a></h4>
+                            </div>
+                            <div class="mentor-details">
+                                <p class="user-location">{{schedule?.discription}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-info-right">
+                        <p>Booked Slots</p>
+                        <div class="user-infos">
+                            <ul>
+                                <li *ngFor="let slot of schedule.start; let i = index">
+                                    {{slot?.day}} - {{slot?.from}} to {{slot?.to}}
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="mentor-booking">
+                            <a class="apt-btn" >Book Appointment</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,13 +10,20 @@ export class TutorMainPageComponent implements OnInit {
 
   constructor(
     private router : Router
-  ) { }
+  ) { 
+   }
 
   ngOnInit(): void {
   }
 
   navigateToProfile(){
     this.router.navigate(["/tutor/profile"]);
+  }
+  navigateToCourses(){
+    this.router.navigate(['tutor/course']);
+  }
+  navigateToShedules(){
+    this.router.navigate(['tutor/schedules']);
   }
 
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TutorProfileRoutingModule } from './tutor-profile-routing.module';
 import { TutorProfileComponent } from './tutor-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     TutorProfileRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MultiSelectModule,
   ]
 })
 export class TutorProfileModule { }

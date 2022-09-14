@@ -1,0 +1,39 @@
+<div>
+    <h2>Coures</h2>
+    <div class="top-nav-search">
+        <form>
+            <input type="text" class="form-control" placeholder="Search here">
+            <button class="btn" type="submit">
+            </button>
+        </form>
+
+        <button (click)="addNewCourse()">Add New Course</button>
+        <div *ngIf="isAddNewCourse">
+            <form>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="form-control-label">Course Name</label>
+                        <input name="title" type="text" placeholder="title" [(ngModel)]="courseName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="form-control-label">Course Discription</label>
+                        <textarea name="discription" type="text" placeholder="Discription"
+                        [(ngModel)]="courseDiscription"></textarea>
+                    </div>
+                </div>
+                <button type="submit">Add</button>
+                <button (click)="close()">Close</button>
+            </form>
+        </div>
+        <div>
+            <div *ngFor="let course of courses ; let index=index ">
+                <div class="card">
+                    <h2 class="m-1">{{course?.courseName}}</h2>
+                    <p class="m-1">{{course?.courseDiscription}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

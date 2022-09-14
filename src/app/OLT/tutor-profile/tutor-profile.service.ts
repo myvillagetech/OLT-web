@@ -28,5 +28,9 @@ export class TutorProfileService {
   updateProfileData(payload : any, tutorId : string) : Observable<any> {
     return this.httpClient.put(`${environment.BASE_URL}tutorProfile/${tutorId}`,payload,{headers : this.header});
   }
+
+  getAllCourses():Observable<any>{
+    return this.httpClient.get(`${environment.BASE_URL}course`,{headers : this.header});
+  }
   
 }

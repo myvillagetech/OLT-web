@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   base = '';
   page = '';
   authToken = localStorage.getItem('accessToken');
+  role = localStorage.getItem('role');
   constructor(
     private cdr: ChangeDetectorRef,
     public router: Router,
@@ -125,6 +126,15 @@ export class HeaderComponent implements OnInit {
     if (name === 'Admin') {
       this.router.navigate(['/admin']);
       this.commonService.nextmessage('admin');
+    }
+  }
+
+  naviagateToHome(){
+    if(this.role ==='Student'){
+      this.router.navigate(['/student/main']);
+    }
+    else{
+      this.router.navigate(['/tutor/main'])
     }
   }
 }

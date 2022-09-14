@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TutorProfileService } from './tutor-profile.service';
 
 @Component({
@@ -12,16 +13,26 @@ export class TutorProfileComponent implements OnInit {
   tutorProfile!: FormGroup;
   loggedinUserId : string= localStorage.getItem('userId') || '';
   tutorProfileId : string = '';
+  courses = [];
 
   constructor(
     private formBuilder: FormBuilder,
-    private tutorProfileService : TutorProfileService
+    private tutorProfileService : TutorProfileService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
+    this.getAllCourses();
     this.getProfileByUserId();
     this.genrateTutorProfile();
     this.addNewSlot() 
+  }
+
+  getAllCourses(){
+    this.tutorProfileService.getAllCourses().subscribe((res)=>{
+      console.log(res);
+      this.courses = res.data;
+    })
   }
 
   getProfileByUserId(){
@@ -90,11 +101,16 @@ export class TutorProfileComponent implements OnInit {
       this.tutorProfileService.updateProfileData(payload,this.tutorProfileId).subscribe((res)=>{
         console.log(res);
         this.getProfileByUserId()
+        this.router.navigate(['/tutor/main'])
       },(error)=>{
         console.log(error);
       })
     }
    
+  }
+
+  navigateToMainPage(){
+    this.router.navigate(['/tutor/main']);
   }
 
 

@@ -1,0 +1,41 @@
+<div class="m-2">
+    <h3>Schedules</h3>
+</div>
+<div class="m-2" *ngIf="schedules.length === 0">
+    <h5 class="d-flex justify-content-center"> No Schedules Found</h5>
+
+</div>
+
+<div>
+    <div *ngFor="let schedule of schedules; let index = index ">
+        <div class="card m-1">
+            <div class="card-body">
+                <div class="mentor-widget">
+                    <div class="user-info-left">
+                        <div class="user-info-cont">
+                            <h4 class="usr-name"><a>student Id :{{schedule.studentId}}</a></h4>
+                            <p class="mentor-type">{{schedule?.title}}</p>
+
+                            <div class="mentor-details">
+                                <p class="user-location">{{schedule?.discription}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-info-right">
+                        <p>Booked Slots</p>
+                        <div class="user-infos">
+                            <ul>
+                                <li *ngFor="let slot of schedule.start; let i = index">
+                                    {{slot?.day}} - {{slot?.from}} to {{slot?.to}}
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="mentor-booking">
+                            <a class="apt-btn" >Book Appointment</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
